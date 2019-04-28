@@ -14,6 +14,7 @@
 		3141629C2275C3040069124C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3141629A2275C3040069124C /* LaunchScreen.storyboard */; };
 		314162A72275C3040069124C /* DominantImageIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162A62275C3040069124C /* DominantImageIdentifierTests.swift */; };
 		314162B22275C3050069124C /* DominantImageIdentifierUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162B12275C3050069124C /* DominantImageIdentifierUITests.swift */; };
+		314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162C02275C9DF0069124C /* NetworkRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		314162AD2275C3050069124C /* DominantImageIdentifierUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DominantImageIdentifierUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		314162B12275C3050069124C /* DominantImageIdentifierUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DominantImageIdentifierUITests.swift; sourceTree = "<group>"; };
 		314162B32275C3050069124C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		314162C02275C9DF0069124C /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		314162852275C3030069124C = {
 			isa = PBXGroup;
 			children = (
+				314162BF2275C9AA0069124C /* Networking */,
 				314162902275C3030069124C /* DominantImageIdentifier */,
 				314162A52275C3040069124C /* DominantImageIdentifierTests */,
 				314162B02275C3050069124C /* DominantImageIdentifierUITests */,
@@ -123,6 +126,14 @@
 				314162B32275C3050069124C /* Info.plist */,
 			);
 			path = DominantImageIdentifierUITests;
+			sourceTree = "<group>";
+		};
+		314162BF2275C9AA0069124C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				314162C02275C9DF0069124C /* NetworkRequest.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				314162942275C3030069124C /* ViewController.swift in Sources */,
+				314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */,
 				314162922275C3030069124C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
