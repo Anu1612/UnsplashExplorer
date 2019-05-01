@@ -17,6 +17,7 @@
 		314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162C02275C9DF0069124C /* NetworkRequest.swift */; };
 		314A201A22788EE9003CF519 /* RequestParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314A201922788EE9003CF519 /* RequestParser.swift */; };
 		314A201C22795A6C003CF519 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314A201B22795A6C003CF519 /* CollectionViewCell.swift */; };
+		31EBC4FA227A1FA000F6752C /* SelectedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBC4F9227A1FA000F6752C /* SelectedImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		314162C02275C9DF0069124C /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		314A201922788EE9003CF519 /* RequestParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParser.swift; sourceTree = "<group>"; };
 		314A201B22795A6C003CF519 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		31EBC4F9227A1FA000F6752C /* SelectedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				3141629A2275C3040069124C /* LaunchScreen.storyboard */,
 				3141629D2275C3040069124C /* Info.plist */,
 				314A201B22795A6C003CF519 /* CollectionViewCell.swift */,
+				31EBC4F9227A1FA000F6752C /* SelectedImage.swift */,
 			);
 			path = DominantImageIdentifier;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			files = (
 				314A201C22795A6C003CF519 /* CollectionViewCell.swift in Sources */,
 				314A201A22788EE9003CF519 /* RequestParser.swift in Sources */,
+				31EBC4FA227A1FA000F6752C /* SelectedImage.swift in Sources */,
 				314162942275C3030069124C /* ViewController.swift in Sources */,
 				314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */,
 				314162922275C3030069124C /* AppDelegate.swift in Sources */,
