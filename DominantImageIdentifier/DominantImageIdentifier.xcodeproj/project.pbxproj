@@ -15,6 +15,8 @@
 		314162A72275C3040069124C /* DominantImageIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162A62275C3040069124C /* DominantImageIdentifierTests.swift */; };
 		314162B22275C3050069124C /* DominantImageIdentifierUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162B12275C3050069124C /* DominantImageIdentifierUITests.swift */; };
 		314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162C02275C9DF0069124C /* NetworkRequest.swift */; };
+		314A201A22788EE9003CF519 /* RequestParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314A201922788EE9003CF519 /* RequestParser.swift */; };
+		314A201C22795A6C003CF519 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314A201B22795A6C003CF519 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		314162B12275C3050069124C /* DominantImageIdentifierUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DominantImageIdentifierUITests.swift; sourceTree = "<group>"; };
 		314162B32275C3050069124C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		314162C02275C9DF0069124C /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		314A201922788EE9003CF519 /* RequestParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParser.swift; sourceTree = "<group>"; };
+		314A201B22795A6C003CF519 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 		314162852275C3030069124C = {
 			isa = PBXGroup;
 			children = (
+				314A201522788E6C003CF519 /* Parser */,
 				314162BF2275C9AA0069124C /* Networking */,
 				314162902275C3030069124C /* DominantImageIdentifier */,
 				314162A52275C3040069124C /* DominantImageIdentifierTests */,
@@ -106,6 +111,7 @@
 				314162982275C3040069124C /* Assets.xcassets */,
 				3141629A2275C3040069124C /* LaunchScreen.storyboard */,
 				3141629D2275C3040069124C /* Info.plist */,
+				314A201B22795A6C003CF519 /* CollectionViewCell.swift */,
 			);
 			path = DominantImageIdentifier;
 			sourceTree = "<group>";
@@ -134,6 +140,14 @@
 				314162C02275C9DF0069124C /* NetworkRequest.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		314A201522788E6C003CF519 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				314A201922788EE9003CF519 /* RequestParser.swift */,
+			);
+			path = Parser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +281,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				314A201C22795A6C003CF519 /* CollectionViewCell.swift in Sources */,
+				314A201A22788EE9003CF519 /* RequestParser.swift in Sources */,
 				314162942275C3030069124C /* ViewController.swift in Sources */,
 				314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */,
 				314162922275C3030069124C /* AppDelegate.swift in Sources */,

@@ -2,33 +2,48 @@
 //  ViewController.swift
 //  DominantImageIdentifier
 //
-//  Created by sonalojha on 28/04/19.
+//  Created by anurag ojha on 28/04/19.
 //  Copyright © 2019 anuragojha. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    @IBOutlet weak var unsplashImage: UIImageView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("ViewDidLoad")
-        NetworkRequest.getImages {
-            print("completed")
-        }
-        
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("count: \(self.items.count)")
+        return self.items.count
     }
-
-
-    @IBAction func loadImagefromUrl(_ sender: Any) {
-        let imageUrl = URL(string: "https://images.unsplash.com/photo-1519058497187-7167f17c6daf?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjY4ODAwfQ")
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("called")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
+        let imageUrl = URL(string:items[indexPath.item])
         do {
             let data = try Data(contentsOf: imageUrl!)
-            self.unsplashImage.image = UIImage(data: data)
+            cell.imageThumb.image = UIImage(data: data)
             
         } catch{
         }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
+//    @IBOutlet weak var unsplashImage: UIImageView!
+    var items = [String]()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("ViewDidLoad")
+        NetworkRequest.getImages { (responsejson) in
+            let responseArray = (responsejson as! NSDictionary) ["results"]
+            for Aresponse in (responseArray as! NSArray){
+                print((((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["small"])
+                self.items.append((((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["small"] as! String)
+            }
+        }
+        
     }
 }
 
