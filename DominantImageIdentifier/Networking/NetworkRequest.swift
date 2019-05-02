@@ -10,7 +10,7 @@ import Foundation
 
 class NetworkRequest {
     static func getImages(completionHandler: @escaping (Any)->()){
-        let client_id = "40759028c23019bbd0a4364f69902e20ad71e141cb9342fc0eb323a4be879cb4"
+        let client_id = ""
         print("entered")
         var urlComponent = URLComponents()
         urlComponent.scheme = "https"
@@ -18,7 +18,7 @@ class NetworkRequest {
         urlComponent.path = "/search/photos"
         urlComponent.queryItems = [
             URLQueryItem(name: "client_id", value: client_id),
-            URLQueryItem(name: "query", value: "table")
+            URLQueryItem(name: "query", value: "water")
         ]
         let splashRequest = URLRequest(url: urlComponent.url!)
         let semaphore = DispatchSemaphore(value: 0)

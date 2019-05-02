@@ -12,6 +12,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var fullResolutionIndex:Int?
     var items = [String]()
+    var fullresolutions = [String]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("count: \(self.items.count)")
@@ -19,23 +20,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("called")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        if !((indexPath.item)>items.count){
-            let imageUrl = URL(string:items[indexPath.item+1])
+            let imageUrl = URL(string:items[indexPath.item])
             do {
                 let data = try Data(contentsOf: imageUrl!)
                 cell.imageThumb.image = UIImage(data: data)
                 
             } catch{
             }
-        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelectItem Called and Index:",indexPath.item)
-        self.fullResolutionIndex = indexPath.item+1
+        self.fullResolutionIndex = indexPath.item
         self.performSegue(withIdentifier:"loadImage", sender: self)
     }
     
@@ -45,9 +43,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         NetworkRequest.getImages { (responsejson) in
             let responseArray = (responsejson as! NSDictionary) ["results"]
             for Aresponse in (responseArray as! NSArray){
-                print((((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["small"])
-                self.items.append((((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["thumb"] as! String)
-                self.items.append((((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["full"] as! String)
+                self.items.append((((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["small"] as! String)
+                self.fullresolutions.append((((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["full"] as! String)
             }
         }
         
@@ -59,7 +56,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         print(self.fullResolutionIndex)
         if let index = self.fullResolutionIndex {
-            imageVc.imageUrl = items[index]
+            imageVc.imageUrl = fullresolutions[index]
         }
     }
 }
