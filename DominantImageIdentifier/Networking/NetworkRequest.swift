@@ -18,7 +18,7 @@ class NetworkRequest {
         urlComponent.path = "/search/photos"
         urlComponent.queryItems = [
             URLQueryItem(name: "client_id", value: client_id),
-            URLQueryItem(name: "query", value: "water")
+            URLQueryItem(name: "query", value: "cats")
         ]
         let splashRequest = URLRequest(url: urlComponent.url!)
         let semaphore = DispatchSemaphore(value: 0)
@@ -27,7 +27,7 @@ class NetworkRequest {
             if ((response as! HTTPURLResponse).statusCode == 200){
                 if let data = data{
                     do{
-                        let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                        let jsonResponse = try JSONSerialization.jsonObject(with: data, options:.mutableContainers)
                         print((jsonResponse as! NSDictionary) ["results"])
                         completionHandler(jsonResponse)
                     }catch let error{

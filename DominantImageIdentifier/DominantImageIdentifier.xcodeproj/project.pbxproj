@@ -15,9 +15,9 @@
 		314162A72275C3040069124C /* DominantImageIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162A62275C3040069124C /* DominantImageIdentifierTests.swift */; };
 		314162B22275C3050069124C /* DominantImageIdentifierUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162B12275C3050069124C /* DominantImageIdentifierUITests.swift */; };
 		314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162C02275C9DF0069124C /* NetworkRequest.swift */; };
-		314A201A22788EE9003CF519 /* RequestParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314A201922788EE9003CF519 /* RequestParser.swift */; };
 		314A201C22795A6C003CF519 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314A201B22795A6C003CF519 /* CollectionViewCell.swift */; };
 		31EBC4FA227A1FA000F6752C /* SelectedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBC4F9227A1FA000F6752C /* SelectedImage.swift */; };
+		31EF6D03227DA7DC001AF4C9 /* UnsplashImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EF6D02227DA7DC001AF4C9 /* UnsplashImage.swift */; };
 		31F0FADD227B3EFF002D7919 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F0FADC227B3EFF002D7919 /* ImageProcessor.swift */; };
 		31F0FADF227B651A002D7919 /* GoogLeNetPlaces.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 31F0FADE227B651A002D7919 /* GoogLeNetPlaces.mlmodel */; };
 /* End PBXBuildFile section */
@@ -54,9 +54,9 @@
 		314162B12275C3050069124C /* DominantImageIdentifierUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DominantImageIdentifierUITests.swift; sourceTree = "<group>"; };
 		314162B32275C3050069124C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		314162C02275C9DF0069124C /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
-		314A201922788EE9003CF519 /* RequestParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParser.swift; sourceTree = "<group>"; };
 		314A201B22795A6C003CF519 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		31EBC4F9227A1FA000F6752C /* SelectedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImage.swift; sourceTree = "<group>"; };
+		31EF6D02227DA7DC001AF4C9 /* UnsplashImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashImage.swift; sourceTree = "<group>"; };
 		31F0FADC227B3EFF002D7919 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		31F0FADE227B651A002D7919 /* GoogLeNetPlaces.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GoogLeNetPlaces.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +89,7 @@
 		314162852275C3030069124C = {
 			isa = PBXGroup;
 			children = (
+				31EF6D02227DA7DC001AF4C9 /* UnsplashImage.swift */,
 				314A201522788E6C003CF519 /* ImageProcessor */,
 				314162BF2275C9AA0069124C /* Networking */,
 				314162902275C3030069124C /* DominantImageIdentifier */,
@@ -153,7 +154,6 @@
 		314A201522788E6C003CF519 /* ImageProcessor */ = {
 			isa = PBXGroup;
 			children = (
-				314A201922788EE9003CF519 /* RequestParser.swift */,
 				31F0FADC227B3EFF002D7919 /* ImageProcessor.swift */,
 			);
 			path = ImageProcessor;
@@ -292,12 +292,12 @@
 			files = (
 				314A201C22795A6C003CF519 /* CollectionViewCell.swift in Sources */,
 				31F0FADD227B3EFF002D7919 /* ImageProcessor.swift in Sources */,
-				314A201A22788EE9003CF519 /* RequestParser.swift in Sources */,
 				31F0FADF227B651A002D7919 /* GoogLeNetPlaces.mlmodel in Sources */,
 				31EBC4FA227A1FA000F6752C /* SelectedImage.swift in Sources */,
 				314162942275C3030069124C /* ViewController.swift in Sources */,
 				314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */,
 				314162922275C3030069124C /* AppDelegate.swift in Sources */,
+				31EF6D03227DA7DC001AF4C9 /* UnsplashImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

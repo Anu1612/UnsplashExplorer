@@ -11,35 +11,35 @@ import UIKit
 import CoreML
 
 class SelectedImage: UIViewController {
-    var imageUrl:String?
-    var imageThumbUrl:String?
+    var image:UnsplashImage?
+    
     
     let model = GoogLeNetPlaces()
     
     @IBOutlet weak var fullresolution: UIImageView!
     
     override func viewDidLoad() {
-        if let url = imageUrl{
-            let imageUrl = URL(string:url)
-            do {
-                let data = try Data(contentsOf: imageUrl!)
-                self.fullresolution.image = UIImage(data: data)
-            } catch{
+        print("Entered")
+        DispatchQueue.global().async { [weak self] in
+            if let url = self?.image?.fullResolutionImage{
+                let imageUrl = URL(string:url)
+                do {
+                    let data = try Data(contentsOf: imageUrl!)
+                    DispatchQueue.main.async {
+                        self?.fullresolution.image = UIImage(data: data)
+                    }
+                } catch{
+                }
             }
         }
     }
     
     @IBAction func PredictObject(_ sender: Any) {
-        if let url = imageUrl{
-            let imageUrl = URL(string: url)
-            do{
-                let data = try Data(contentsOf: imageUrl!)
-               let predict = self.predictDominantObject(image: UIImage(data:data)!)
-                print(predict)
-                
-            }catch{
-            }
-            
+        if let image = self.fullresolution.image{
+            print(self.predictDominantObject(image: image))
+        }
+        else{
+            fatalError("Unable to Load Images")
         }
     }
     func predictDominantObject(image:UIImage) -> String? {
