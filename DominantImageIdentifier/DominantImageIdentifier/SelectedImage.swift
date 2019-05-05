@@ -16,16 +16,20 @@ class SelectedImage: UIViewController {
     
     let model = GoogLeNetPlaces()
     
+    @IBOutlet weak var loadingImageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var fullresolution: UIImageView!
     
     override func viewDidLoad() {
         print("Entered")
+        loadingImageIndicator.startAnimating()
         DispatchQueue.global().async { [weak self] in
             if let url = self?.image?.fullResolutionImage{
                 let imageUrl = URL(string:url)
                 do {
                     let data = try Data(contentsOf: imageUrl!)
                     DispatchQueue.main.async {
+                        self?.loadingImageIndicator.stopAnimating()
+                        self?.loadingImageIndicator.isHidden = true
                         self?.fullresolution.image = UIImage(data: data)
                     }
                 } catch{

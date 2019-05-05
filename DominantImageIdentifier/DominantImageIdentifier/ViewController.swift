@@ -9,7 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var searchUnsplash: UITextField!
+    @IBOutlet weak var feedCollectionView: UICollectionView!
     var selectedIndex:Int?
     var images: [UnsplashImage]?
     var fullresolutions = [String]()
@@ -21,13 +24,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        let imageUrl = URL(string:images![indexPath.item].thumbImage)
-            do {
-                let data = try Data(contentsOf: imageUrl!)
-                cell.imageThumb.image = UIImage(data: data)
-                
-            } catch{
-            }
+        DispatchQueue.global(qos: .background).async {[weak self] in
+            
+            let imageUrl = URL(string:(self?.images![indexPath.item].thumbImage)!)
+                do {
+                    let data = try Data(contentsOf: imageUrl!)
+                    DispatchQueue.main.async {
+                        self?.activityIndicator.stopAnimating()
+                        self?.activityIndicator.isHidden = true
+                        cell.imageThumb.image = UIImage(data: data)
+                    }
+                    
+                } catch{
+                }
+        }
         return cell
     }
     
@@ -40,21 +50,36 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     override func viewDidLoad() {
+        self.activityIndicator.isHidden = true
         super.viewDidLoad()
         print("ViewDidLoad")
-        self.images = [UnsplashImage]()
-        NetworkRequest.getImages { (responsejson) in
-            let responseArray = (responsejson as! NSDictionary) ["results"]
-            for Aresponse in (responseArray as! NSArray){
-                let image = UnsplashImage()
-                image.thumbImage = (((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["small"] as! String
-                image.fullResolutionImage = (((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["full"] as! String
-                self.images?.append(image)
-            }
-        }
         
     }
     
+    @IBAction func SearchUnsplash(_ sender: Any) {
+        print("called")
+        guard let search = self.searchUnsplash?.text?.trimmingCharacters(in:.whitespaces) else{
+            print("else called")
+            self.searchUnsplash.placeholder = "something needed"
+            return
+        }
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        self.images = [UnsplashImage]()
+        NetworkRequest.getImages(search: search, completionHandler:{ (responsejson) in
+            let responseArray = (responsejson as! NSDictionary) ["results"]
+            for Aresponse in (responseArray as! NSArray){
+                let image = UnsplashImage()
+                image.thumbImage = (((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["thumb"] as! String
+                image.fullResolutionImage = (((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["regular"] as! String
+                self.images?.append(image)
+            }
+            DispatchQueue.main.async {
+                self.feedCollectionView.reloadData()
+            }
+            
+        })
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let imageVc = segue.destination as? SelectedImage else {
             return

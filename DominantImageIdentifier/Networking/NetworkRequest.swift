@@ -9,7 +9,7 @@
 import Foundation
 
 class NetworkRequest {
-    static func getImages(completionHandler: @escaping (Any)->()){
+    static func getImages(search:String,completionHandler: @escaping (Any)->()){
         let client_id = ""
         print("entered")
         var urlComponent = URLComponents()
@@ -18,10 +18,9 @@ class NetworkRequest {
         urlComponent.path = "/search/photos"
         urlComponent.queryItems = [
             URLQueryItem(name: "client_id", value: client_id),
-            URLQueryItem(name: "query", value: "cats")
+            URLQueryItem(name: "query", value: search)
         ]
         let splashRequest = URLRequest(url: urlComponent.url!)
-        let semaphore = DispatchSemaphore(value: 0)
         
         let dataTask = URLSession.shared.dataTask(with: splashRequest) { (data, response, error) in
             if ((response as! HTTPURLResponse).statusCode == 200){
@@ -38,10 +37,8 @@ class NetworkRequest {
             else{
                 print(error?.localizedDescription)
             }
-            semaphore.signal()
         }
         dataTask.resume()
-        semaphore.wait()
         
     }
 }
