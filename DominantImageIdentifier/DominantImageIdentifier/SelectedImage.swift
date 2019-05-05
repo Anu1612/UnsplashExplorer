@@ -23,7 +23,7 @@ class SelectedImage: UIViewController {
         print("Entered")
         loadingImageIndicator.startAnimating()
         DispatchQueue.global().async { [weak self] in
-            if let url = self?.image?.fullResolutionImage{
+            if let url = self?.image?.fullResolutionImageUrl{
                 let imageUrl = URL(string:url)
                 do {
                     let data = try Data(contentsOf: imageUrl!)

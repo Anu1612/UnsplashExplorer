@@ -16,6 +16,7 @@
 		314162B22275C3050069124C /* DominantImageIdentifierUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162B12275C3050069124C /* DominantImageIdentifierUITests.swift */; };
 		314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314162C02275C9DF0069124C /* NetworkRequest.swift */; };
 		314A201C22795A6C003CF519 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314A201B22795A6C003CF519 /* CollectionViewCell.swift */; };
+		31E9D132227F048B00C64DA0 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E9D131227F048B00C64DA0 /* PinterestLayout.swift */; };
 		31EBC4FA227A1FA000F6752C /* SelectedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBC4F9227A1FA000F6752C /* SelectedImage.swift */; };
 		31EF6D03227DA7DC001AF4C9 /* UnsplashImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EF6D02227DA7DC001AF4C9 /* UnsplashImage.swift */; };
 		31F0FADD227B3EFF002D7919 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F0FADC227B3EFF002D7919 /* ImageProcessor.swift */; };
@@ -55,6 +56,7 @@
 		314162B32275C3050069124C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		314162C02275C9DF0069124C /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		314A201B22795A6C003CF519 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		31E9D131227F048B00C64DA0 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		31EBC4F9227A1FA000F6752C /* SelectedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImage.swift; sourceTree = "<group>"; };
 		31EF6D02227DA7DC001AF4C9 /* UnsplashImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashImage.swift; sourceTree = "<group>"; };
 		31F0FADC227B3EFF002D7919 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				31EF6D02227DA7DC001AF4C9 /* UnsplashImage.swift */,
+				31E9D130227F046700C64DA0 /* Layout */,
 				314A201522788E6C003CF519 /* ImageProcessor */,
 				314162BF2275C9AA0069124C /* Networking */,
 				314162902275C3030069124C /* DominantImageIdentifier */,
@@ -157,6 +160,14 @@
 				31F0FADC227B3EFF002D7919 /* ImageProcessor.swift */,
 			);
 			path = ImageProcessor;
+			sourceTree = "<group>";
+		};
+		31E9D130227F046700C64DA0 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				31E9D131227F048B00C64DA0 /* PinterestLayout.swift */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +307,7 @@
 				31EBC4FA227A1FA000F6752C /* SelectedImage.swift in Sources */,
 				314162942275C3030069124C /* ViewController.swift in Sources */,
 				314162C12275C9DF0069124C /* NetworkRequest.swift in Sources */,
+				31E9D132227F048B00C64DA0 /* PinterestLayout.swift in Sources */,
 				314162922275C3030069124C /* AppDelegate.swift in Sources */,
 				31EF6D03227DA7DC001AF4C9 /* UnsplashImage.swift in Sources */,
 			);

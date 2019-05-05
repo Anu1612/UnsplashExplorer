@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class UnsplashImage: NSObject {
-    var thumbImage:String = ""
-    var fullResolutionImage:String = ""
+    lazy var thumbImage = UIImage()
+    var thumbImageUrl:String = ""
+    var fullResolutionImageUrl:String = ""
     var title:String = ""
 }
