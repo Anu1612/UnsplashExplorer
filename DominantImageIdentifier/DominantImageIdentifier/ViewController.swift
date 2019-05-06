@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PinterestLayoutDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,PinterestLayoutDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingText: UILabel!
     
     @IBOutlet weak var searchUnsplash: UITextField!
     @IBOutlet weak var feedCollectionView: UICollectionView!
@@ -52,6 +53,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         self.activityIndicator.isHidden = true
+        self.loadingText.isHidden = true
         super.viewDidLoad()
         if let layout = feedCollectionView?.collectionViewLayout as? PinterestLayout {
             print("")
@@ -60,6 +62,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         else{
             print("Inside Laytout")
         }
+
         print("ViewDidLoad")
         
     }
@@ -76,9 +79,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             return
         }
         activityIndicator.isHidden = false
+        self.loadingText.isHidden = false
         activityIndicator.startAnimating()
         self.images = [UnsplashImage]()
+        let group = DispatchGroup()
         NetworkRequest.getImages(search: search, completionHandler:{ (responsejson) in
+            DispatchQueue.global(qos: .background).async(group: group) {
+            group.enter()
             let responseArray = (responsejson as! NSDictionary) ["results"]
             for Aresponse in (responseArray as! NSArray){
                 let image = UnsplashImage()
@@ -88,13 +95,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 do {
                     let data = try Data(contentsOf: imageUrl!)
                     image.thumbImage = UIImage(data: data)!
+                    print("ThumbImage size: \(image.thumbImage.size.height)")
                     
                 }catch{
                 }
                 self.images?.append(image)
             }
-            DispatchQueue.main.async {
+            group.leave()
+            }
+            group.notify(queue: .main) {
+                print("called")
                 self.feedCollectionView.reloadData()
+                self.activityIndicator.stopAnimating()
+                self.loadingText.isHidden = true
+                self.activityIndicator.isHidden = true
             }
             
         })

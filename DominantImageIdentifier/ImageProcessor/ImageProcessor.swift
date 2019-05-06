@@ -9,10 +9,10 @@
 import CoreVideo
 
 struct ImageProcessor {
-    static func pixelBuffer (forImage image:CGImage) -> CVPixelBuffer? {
+    static func pixelBuffer (forImage image:CGImage, height:CGFloat, width:CGFloat) -> CVPixelBuffer? {
         
         
-        let frameSize = CGSize(width: 224, height: 224)
+        let frameSize = CGSize(width: width, height:height)
         
         var pixelBuffer:CVPixelBuffer? = nil
         let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(frameSize.width), Int(frameSize.height), kCVPixelFormatType_32BGRA , nil, &pixelBuffer)

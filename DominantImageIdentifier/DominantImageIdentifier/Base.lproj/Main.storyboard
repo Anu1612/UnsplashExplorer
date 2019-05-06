@@ -34,64 +34,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I1G-QC-72k">
-                                <rect key="frame" x="0.0" y="139" width="414" height="757"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4PY-ch-uSJ">
+                                <rect key="frame" x="0.0" y="92" width="414" height="791"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewLayout key="collectionViewLayout" id="XKV-qM-D1M" customClass="PinterestLayout" customModule="DominantImageIdentifier" customModuleProvider="target"/>
-                                <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="Nq5-AC-7bE">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="757"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                </activityIndicatorView>
+                                <collectionViewLayout key="collectionViewLayout" id="XLz-Dr-Gbg" customClass="PinterestLayout" customModule="DominantImageIdentifier"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="Cell" id="Vui-5E-w98" customClass="CollectionViewCell" customModule="DominantImageIdentifier" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="oj3-ot-fL1" customClass="CollectionViewCell" customModule="DominantImageIdentifier" customModuleProvider="target">
+                                        <rect key="frame" x="22" y="0.0" width="370" height="550"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="550"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pT0-F1-2yi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="184" height="256"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GWu-cC-11i">
+                                                    <rect key="frame" x="0.0" y="0.0" width="330" height="456"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1EE-hN-nig">
+                                                            <rect key="frame" x="0.0" y="0.0" width="370" height="550"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="GWu-cC-11i" secondAttribute="bottom" id="2qQ-7d-5TK"/>
+                                            <constraint firstItem="GWu-cC-11i" firstAttribute="top" secondItem="oj3-ot-fL1" secondAttribute="top" id="E3Q-sr-0vV"/>
+                                            <constraint firstItem="GWu-cC-11i" firstAttribute="leading" secondItem="oj3-ot-fL1" secondAttribute="leading" id="WLZ-ap-U1U"/>
+                                            <constraint firstAttribute="trailing" secondItem="GWu-cC-11i" secondAttribute="trailing" id="WiJ-l9-kLO"/>
+                                        </constraints>
+                                        <size key="customSize" width="370" height="550"/>
                                         <connections>
-                                            <outlet property="imageThumb" destination="pT0-F1-2yi" id="8Gr-T5-9sw"/>
+                                            <outlet property="imageThumb" destination="1EE-hN-nig" id="nV3-gW-alA"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="ln3-rg-ne9"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="egB-vq-qwn"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="QdG-2c-fLw"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="eNZ-aO-gxw"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cZr-zH-Ga5">
-                                <rect key="frame" x="15" y="101" width="288" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-im-VDI">
+                                <rect key="frame" x="325" y="92" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Search"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="SearchUnsplash:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JaV-KN-7oh"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bfD-5h-w0C">
+                                <rect key="frame" x="9" y="93" width="314" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYg-eW-5Fk">
-                                <rect key="frame" x="311" y="101" width="83" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YRc-aO-gPk">
+                                <rect key="frame" x="159" y="422" width="96.5" height="53.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="Search"/>
-                                <connections>
-                                    <action selector="SearchUnsplash:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GNT-oh-ZbK"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-va-qjo">
+                                        <rect key="frame" x="38.5" y="0.0" width="20" height="20"/>
+                                        <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POn-kW-LNm">
+                                        <rect key="frame" x="0.0" y="28" width="96.5" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="xs4-2e-okE"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="Nq5-AC-7bE" id="ncF-nf-COt"/>
-                        <outlet property="feedCollectionView" destination="I1G-QC-72k" id="pcW-I6-0U7"/>
-                        <outlet property="searchUnsplash" destination="cZr-zH-Ga5" id="anV-tA-O1Z"/>
+                        <outlet property="activityIndicator" destination="gGR-va-qjo" id="t9Y-Vz-7sQ"/>
+                        <outlet property="feedCollectionView" destination="4PY-ch-uSJ" id="HvI-U7-AVt"/>
+                        <outlet property="loadingText" destination="POn-kW-LNm" id="qIr-iS-Jth"/>
+                        <outlet property="searchUnsplash" destination="bfD-5h-w0C" id="drV-cI-jWD"/>
                         <segue destination="v8x-O6-ArR" kind="show" identifier="loadImage" id="bNv-Zv-kgY"/>
                     </connections>
                 </viewController>

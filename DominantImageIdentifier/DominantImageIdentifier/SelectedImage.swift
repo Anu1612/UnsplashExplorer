@@ -14,7 +14,7 @@ class SelectedImage: UIViewController {
     var image:UnsplashImage?
     
     
-    let model = GoogLeNetPlaces()
+    let model = Resnet50()
     
     @IBOutlet weak var loadingImageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var fullresolution: UIImageView!
@@ -47,12 +47,12 @@ class SelectedImage: UIViewController {
         }
     }
     func predictDominantObject(image:UIImage) -> String? {
-        if let pixelBuffer = ImageProcessor.pixelBuffer(forImage: image.cgImage!){
-            guard let prediction = try? model.prediction(sceneImage: pixelBuffer)
+        if let pixelBuffer = ImageProcessor.pixelBuffer(forImage: image.cgImage!,height: 224,width: 224){
+            guard let prediction = try? model.prediction(image: pixelBuffer)
                 else {
                     fatalError("Unable to Process Image")
             }
-            return prediction.sceneLabel
+            return prediction.classLabel
         }
         return nil
     }
