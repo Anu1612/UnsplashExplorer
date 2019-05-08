@@ -27,9 +27,9 @@ class NetworkRequest {
             if ((response as! HTTPURLResponse).statusCode == 200){
                 if let data = data{
                     do{
-                        let jsonResponse = try JSONSerialization.jsonObject(with: data, options:.mutableContainers)
-                        print((jsonResponse as! NSDictionary) ["results"])
-                        completionHandler(jsonResponse)
+                        let responses = try JSONDecoder().decode(Response.self, from: data)
+                        print(responses.results?[0].alt_description)
+                        completionHandler(responses)
                     }catch let error{
                         print(error.localizedDescription)
                     }

@@ -86,21 +86,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         NetworkRequest.getImages(search: search, completionHandler:{ (responsejson) in
             DispatchQueue.global(qos: .background).async(group: group) {
             group.enter()
-            let responseArray = (responsejson as! NSDictionary) ["results"]
-            for Aresponse in (responseArray as! NSArray){
-                let image = UnsplashImage()
-                image.thumbImageUrl = (((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["thumb"] as! String
-                image.fullResolutionImageUrl = (((Aresponse as! NSDictionary)["urls"]) as! NSDictionary)["regular"] as! String
-                let imageUrl = URL(string:image.thumbImageUrl)
-                do {
-                    let data = try Data(contentsOf: imageUrl!)
-                    image.thumbImage = UIImage(data: data)!
-                    print("ThumbImage size: \(image.thumbImage.size.height)")
-                    
-                }catch{
+                if let response = responsejson as? Response{
+                for result in response.results!{
+                    let image = UnsplashImage()
+                    let imageUrl = URL(string: result.urls!.thumb!)
+                    do{
+                        let data = try Data(contentsOf: imageUrl!)
+                        image.thumbImage = UIImage(data: data)!
+                        print("ThumbImage size: \(image.thumbImage.size.height)")
+                    }catch{
+                        print(error.localizedDescription)
+                    }
+                    self.images?.append(image)
                 }
-                self.images?.append(image)
-            }
+                }
+                else{
+                    print("unable to Parse response")
+                }
             group.leave()
             }
             group.notify(queue: .main) {
