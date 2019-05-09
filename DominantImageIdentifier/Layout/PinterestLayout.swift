@@ -116,4 +116,10 @@ class PinterestLayout: UICollectionViewLayout {
         return cache[indexPath.item]
     }
     
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        print("Invalidated called")
+        cache.removeAll()
+    }
+    
 }

@@ -18,10 +18,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var selectedIndex:Int?
     var images: [UnsplashImage]?
     var fullresolutions = [String]()
+    var pageNo:Int = 1
+    var search:String = ""
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("count: \(images?.count ?? 0)")
         return images?.count ?? 0
+//        if let count = images?.count{
+//            if(count == 10){
+//                print("inside if")
+//                makeRequest(search: self.search)
+//            }
+//        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -44,6 +53,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         print("\(#function) called")
+        print(indexPath.item)
         guard let height = images?[indexPath.item].thumbImage.size.height else{
             return 0
         }
@@ -72,48 +82,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @IBAction func SearchUnsplash(_ sender: Any) {
+        feedCollectionView.clearsContextBeforeDrawing = true
         print("called")
         guard let search = self.searchUnsplash?.text?.trimmingCharacters(in:.whitespaces) else{
             print("else called")
             self.searchUnsplash.placeholder = "something needed"
             return
         }
+        self.search = search
         activityIndicator.isHidden = false
         self.loadingText.isHidden = false
         activityIndicator.startAnimating()
         self.images = [UnsplashImage]()
-        let group = DispatchGroup()
-        NetworkRequest.getImages(search: search, completionHandler:{ (responsejson) in
-            DispatchQueue.global(qos: .background).async(group: group) {
-            group.enter()
-                if let response = responsejson as? Response{
-                for result in response.results!{
-                    let image = UnsplashImage()
-                    let imageUrl = URL(string: result.urls!.thumb!)
-                    do{
-                        let data = try Data(contentsOf: imageUrl!)
-                        image.thumbImage = UIImage(data: data)!
-                        print("ThumbImage size: \(image.thumbImage.size.height)")
-                    }catch{
-                        print(error.localizedDescription)
-                    }
-                    self.images?.append(image)
-                }
-                }
-                else{
-                    print("unable to Parse response")
-                }
-            group.leave()
-            }
-            group.notify(queue: .main) {
-                print("called")
-                self.feedCollectionView.reloadData()
-                self.activityIndicator.stopAnimating()
-                self.loadingText.isHidden = true
-                self.activityIndicator.isHidden = true
-            }
-            
-        })
+        self.makeRequest(search: search)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let imageVc = segue.destination as? SelectedImage else {
@@ -121,5 +102,46 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         imageVc.image = self.images![self.selectedIndex!]
         
+    }
+    func makeRequest(search:String) {
+        let group = DispatchGroup()
+        NetworkRequest.getImages(search: search, pageNo: String(pageNo), completionHandler:{ (responsejson) in
+            DispatchQueue.global(qos: .background).async(group: group) {
+                group.enter()
+                if let response = responsejson as? Response{
+                    for result in response.results!{
+                        let image = UnsplashImage()
+                        image.fullResolutionImageUrl = result.urls!.regular!
+                        let imageUrl = URL(string: result.urls!.thumb!)
+                        do{
+                            let data = try Data(contentsOf: imageUrl!)
+                            image.thumbImage = UIImage(data: data)!
+                            print("ThumbImage size: \(image.thumbImage.size.height)")
+                        }catch{
+                            print(error.localizedDescription)
+                        }
+                        self.images?.append(image)
+                    }
+                }
+                else{
+                    print("unable to Parse response")
+                }
+                group.leave()
+            }
+            group.notify(queue: .main) {
+                print("inside maine called")
+                if let layout = self.feedCollectionView?.collectionViewLayout as? PinterestLayout {
+                    print("inside makerequest")
+                    layout.invalidateLayout()
+                }
+                self.feedCollectionView.reloadData()
+                self.activityIndicator.stopAnimating()
+                self.loadingText.isHidden = true
+                self.activityIndicator.isHidden = true
+//                self.pageNo = self.pageNo + 1
+                
+            }
+            
+        })
     }
 }
