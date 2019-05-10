@@ -29,12 +29,14 @@ class NetworkRequest {
                 if let data = data{
                     do{
                         let responses = try JSONDecoder().decode(Response.self, from: data)
-                        print(responses.results?[0].alt_description)
                         completionHandler(responses)
                     }catch let error{
                         print(error.localizedDescription)
                     }
                 }
+            }
+            else if((response as! HTTPURLResponse).statusCode == 403){
+                print("Eighter end of content or Not found")
             }
             else{
                 print(error?.localizedDescription)

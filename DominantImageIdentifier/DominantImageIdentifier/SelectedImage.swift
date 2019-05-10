@@ -40,7 +40,9 @@ class SelectedImage: UIViewController {
     
     @IBAction func PredictObject(_ sender: Any) {
         if let image = self.fullresolution.image{
-            print(self.predictDominantObject(image: image))
+            DispatchQueue.global().async {
+                print(self.predictDominantObject(image: image))
+            }
         }
         else{
             fatalError("Unable to Load Images")

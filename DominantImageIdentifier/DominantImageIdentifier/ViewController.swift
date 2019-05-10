@@ -23,15 +23,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("count: \(images?.count ?? 0)")
-        return images?.count ?? 0
-//        if let count = images?.count{
-//            if(count == 10){
-//                print("inside if")
-//                makeRequest(search: self.search)
-//            }
-//        }
+        if let count = images?.count{
+            if(count.isMultiple(of: 10)){
+                print("inside if")
+                makeRequest(search: self.search)
+            }
+        }
 
+        return images?.count ?? 0
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("\(#function)")
+        DispatchQueue.main.async {
+            self.addImages()
+        }
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
@@ -83,6 +91,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBAction func SearchUnsplash(_ sender: Any) {
         feedCollectionView.clearsContextBeforeDrawing = true
+        self.pageNo = 1
         print("called")
         guard let search = self.searchUnsplash?.text?.trimmingCharacters(in:.whitespaces) else{
             print("else called")
@@ -129,19 +138,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 group.leave()
             }
             group.notify(queue: .main) {
-                print("inside maine called")
-                if let layout = self.feedCollectionView?.collectionViewLayout as? PinterestLayout {
-                    print("inside makerequest")
-                    layout.invalidateLayout()
+                print("inside main called")
+                if(self.pageNo == 1){
+                    self.addImages()
                 }
-                self.feedCollectionView.reloadData()
-                self.activityIndicator.stopAnimating()
-                self.loadingText.isHidden = true
-                self.activityIndicator.isHidden = true
-//                self.pageNo = self.pageNo + 1
-                
+                self.pageNo += 1
             }
             
         })
+    }
+    func addImages(){
+        if let layout = self.feedCollectionView?.collectionViewLayout as? PinterestLayout {
+            print("inside makerequest")
+            layout.invalidateLayout()
+        }
+        self.feedCollectionView.reloadData()
+        self.activityIndicator.stopAnimating()
+        self.loadingText.isHidden = true
+        self.activityIndicator.isHidden = true
     }
 }
