@@ -14,6 +14,8 @@ class UnsplashImage: NSObject {
     var thumbImageUrl:String = ""
     var fullResolutionImageUrl:String = ""
     var imageDescription:String = ""
+    var user:String = ""
+    var userProfileImage:String = ""
 }
 
 struct Response:Decodable {
@@ -22,11 +24,18 @@ struct Response:Decodable {
 
 struct Photos:Decodable {
     var alt_description:String?
-    var urls:URLS?
+    var urls:Urls?
+    var user:User?
     
 }
 
-struct URLS:Decodable {
+struct Urls:Decodable {
     var thumb:String?
     var regular:String?
+    var small:String?
+}
+
+struct User:Decodable {
+    var name:String?
+    var profile_image:Urls
 }

@@ -15,24 +15,41 @@ class SelectedImage: UIViewController {
     
     
     let model = Resnet50()
+    lazy var imageCache = NSCache<AnyObject, AnyObject>()
     
     @IBOutlet weak var loadingImageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var fullresolution: UIImageView!
+    @IBOutlet weak var userProfile: UIImageView!
+    @IBOutlet weak var userName: UILabel!
     
     override func viewDidLoad() {
-        print("Entered")
         loadingImageIndicator.startAnimating()
+        userName.text = image?.user
+        DispatchQueue.global().async { [weak self] in
+            if let profileUrl = self?.image?.userProfileImage{
+                do{
+                    let data = try Data(contentsOf: URL(string: profileUrl)!)
+                    DispatchQueue.main.async {
+                        self?.userProfile.image = UIImage(data: data)
+                    }
+                }catch{
+                    print(error.localizedDescription)
+                }
+            }
+        }
         DispatchQueue.global().async { [weak self] in
             if let url = self?.image?.fullResolutionImageUrl{
                 let imageUrl = URL(string:url)
                 do {
                     let data = try Data(contentsOf: imageUrl!)
+                    let image = UIImage(data: data)
                     DispatchQueue.main.async {
                         self?.loadingImageIndicator.stopAnimating()
                         self?.loadingImageIndicator.isHidden = true
-                        self?.fullresolution.image = UIImage(data: data)
+                        self?.fullresolution.image = image!
                     }
                 } catch{
+                    print(error.localizedDescription)
                 }
             }
         }

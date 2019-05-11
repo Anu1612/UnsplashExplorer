@@ -28,6 +28,9 @@ class NetworkRequest {
             if ((response as! HTTPURLResponse).statusCode == 200){
                 if let data = data{
                     do{
+                        let jsonResponse = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                        print("Server Response: \(jsonResponse)")
+                        print("response Succesfully received")
                         let responses = try JSONDecoder().decode(Response.self, from: data)
                         completionHandler(responses)
                     }catch let error{

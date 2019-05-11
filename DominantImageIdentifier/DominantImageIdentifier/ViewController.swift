@@ -120,7 +120,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 if let response = responsejson as? Response{
                     for result in response.results!{
                         let image = UnsplashImage()
-                        image.fullResolutionImageUrl = result.urls!.regular!
+                        image.fullResolutionImageUrl = result.urls!.small!
+                        image.user = result.user!.name!
+                        image.userProfileImage = result.user!.profile_image.small!
                         let imageUrl = URL(string: result.urls!.thumb!)
                         do{
                             let data = try Data(contentsOf: imageUrl!)
