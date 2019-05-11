@@ -13,5 +13,29 @@ class UnsplashImage: NSObject {
     lazy var thumbImage = UIImage()
     var thumbImageUrl:String = ""
     var fullResolutionImageUrl:String = ""
-    var title:String = ""
+    var imageDescription:String = ""
+    var user:String = ""
+    var userProfileImage:String = ""
+}
+
+struct Response:Decodable {
+    var results:[Photos]?
+}
+
+struct Photos:Decodable {
+    var alt_description:String?
+    var urls:Urls?
+    var user:User?
+    
+}
+
+struct Urls:Decodable {
+    var thumb:String?
+    var regular:String?
+    var small:String?
+}
+
+struct User:Decodable {
+    var name:String?
+    var profile_image:Urls
 }

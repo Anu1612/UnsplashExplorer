@@ -41,7 +41,7 @@ class PinterestLayout: UICollectionViewLayout {
     
     //2. Configurable properties
     fileprivate var numberOfColumns = 2
-    fileprivate var cellPadding: CGFloat = 6
+    fileprivate var cellPadding: CGFloat = 5
     
     //3. Array to keep a cache of attributes.
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
@@ -114,6 +114,12 @@ class PinterestLayout: UICollectionViewLayout {
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cache[indexPath.item]
+    }
+    
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        print("Invalidated called")
+        cache.removeAll()
     }
     
 }
