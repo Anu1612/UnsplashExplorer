@@ -40,7 +40,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         if let image = images?[indexPath.item]{
@@ -142,6 +141,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             group.notify(queue: .main) {
                 print("inside main called")
                 if(self.pageNo == 1){
+                    self.feedCollectionView.setContentOffset(.zero, animated: true)
                     self.addImages()
                 }
                 self.pageNo += 1
