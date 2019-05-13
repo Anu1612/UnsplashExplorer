@@ -5,4 +5,4 @@ This takes the User Input in Search Bar and uses to Search Unsplash's Archive of
 
 Show the images in Pinterest Style format
 
-![](ScreenShots/Simulator%20Screen%20Shot%20-%20iPhone%20Xʀ%20-%202019-05-13%20at%2022.51.51.png)
+<img src="https://github.com/Anu1612/UnsplashExplorer/blob/master/ScreenShots/Simulator%20Screen%20Shot%20-%20iPhone%20Xʀ%20-%202019-05-13%20at%2022.51.51.png" width="382" height="828">
